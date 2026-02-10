@@ -110,13 +110,16 @@ Comprometimento do servidor.
 
 ---
 
-## **🚨 ANÁLISE FINAL**
+## 🚨 ANÁLISE FINAL
 
-A exploração demonstrou que uma configuração inadequada do serviço WebDAV permitiu:
+A exploração evidenciou falhas críticas na configuração do serviço WebDAV, permitindo:
 
-- Upload de arquivo malicioso  
-- Execução remota de comandos  
-- Exposição de credenciais sensíveis  
+- Upload não autenticado de arquivo malicioso  
+- Execução remota de comandos (RCE)  
+- Acesso a arquivos sensíveis do sistema  
+- Exposição de hashes de senha  
+
+**Se explorado em ambiente real, o impacto poderia resultar em comprometimento total do servidor.**
 
 ---
 
