@@ -1,5 +1,4 @@
 # Credential Dump & Webshell Attack Lab
-
 ![MIT License](https://img.shields.io/badge/license-MIT-green)
 
 ## 📌 Visão Geral
