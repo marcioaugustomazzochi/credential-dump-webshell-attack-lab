@@ -1,3 +1,14 @@
+## 📌 Resumo Executivo
+
+Este laboratório demonstra a exploração de uma vulnerabilidade no serviço WebDAV do Metasploitable 2, resultando em:
+
+- Upload não autenticado de WebShell
+- Execução Remota de Comandos (RCE)
+- Acesso a arquivos sensíveis
+- Exposição de hashes de senha
+
+O objetivo foi validar o ciclo completo de exploração em ambiente controlado.
+
 # 📂 EVIDÊNCIAS TÉCNICAS  
 ## Credential Dump & Webshell Attack Lab
 
