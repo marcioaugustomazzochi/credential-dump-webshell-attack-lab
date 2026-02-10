@@ -1,119 +1,124 @@
-====================================================================
-📂 EVIDÊNCIAS TÉCNICAS
-Credential Dump & Webshell Attack Lab
-====================================================================
+# 📂 Evidências Técnicas  
+### Credential Dump & Webshell Attack Lab
 
-[0] AMBIENTE DO ATACANTE – KALI LINUX
---------------------------------------------------------------------
+> Documento técnico contendo as evidências coletadas durante a execução do laboratório em ambiente isolado.
 
-Sistema: Kali Linux
-Virtualização: VirtualBox
-Rede: Host-Only (isolada)
+---
 
-Objetivo:
-Validar que o ambiente está configurado corretamente antes do início
-dos testes de exploração.
+## 🖥️ 1️⃣ Ambiente do Atacante – Kali Linux
 
-[EVIDÊNCIA]
-(INSERIR PRINT AQUI)
-00-kali-environment.png
+**Sistema:** Kali Linux  
+**Virtualização:** VirtualBox  
+**Rede:** Host-Only (Isolada)
 
+> O ambiente foi validado antes do início da exploração para garantir configuração correta da rede e comunicação com o alvo.
 
-[1] VERIFICAÇÃO DE CONECTIVIDADE
---------------------------------------------------------------------
+### 📸 Evidência
 
-Comando utilizado:
+![Ambiente Kali](./00-kali-environment.png)
+
+---
+
+## 📡 2️⃣ Verificação de Conectividade (Ping)
+
+```bash
 ping <IP_DO_ALVO>
-
 Objetivo:
 Confirmar comunicação entre Kali Linux e Metasploitable 2.
 
 Resultado:
-Respostas ICMP recebidas, confirmando conectividade na rede isolada.
+Respostas ICMP recebidas com sucesso, validando conectividade na rede isolada.
 
-[EVIDÊNCIA]
-(INSERIR PRINT AQUI)
-01-ping-test.png
+📸 Evidência
 
 
-[2] ENUMERAÇÃO DE PORTAS
---------------------------------------------------------------------
+🔎 3️⃣ Enumeração de Portas (Nmap)
+nmap -sV -sC <IP_DO_ALVO>
+Objetivo:
+Identificar portas abertas, serviços ativos e versões em execução.
 
-Ferramenta: Nmap
+Principais achados:
+
+Múltiplas portas abertas
+
+Serviço HTTP ativo
+
+Indícios de WebDAV habilitado
+
+📸 Evidência
+
+
+🌐 4️⃣ Enumeração Web
+Ferramenta utilizada para fingerprint do servidor web.
 
 Objetivo:
-Identificar portas abertas e serviços expostos.
+Identificar tecnologias e possíveis configurações inseguras.
 
-Resultado:
-- Múltiplas portas abertas
-- Serviço HTTP identificado
-- Indícios de WebDAV habilitado
-
-[EVIDÊNCIA]
-(INSERIR PRINT AQUI)
-02-nmap-scan.png
+📸 Evidência
 
 
-[3] DESCOBERTA DE DIRETÓRIO
---------------------------------------------------------------------
-
-Ferramenta: Gobuster
-
+📁 5️⃣ Descoberta de Diretórios
+gobuster dir -u http://<IP_DO_ALVO> -w wordlist.txt
 Diretório identificado:
-/dav
 
-Impacto:
+/dav
 Diretório com permissões inadequadas permitindo exploração.
 
-[EVIDÊNCIA]
-(INSERIR PRINT AQUI)
-04-gobuster.png
+📸 Evidência
 
 
-[4] EXECUÇÃO REMOTA DE COMANDOS
---------------------------------------------------------------------
-
+💻 6️⃣ Execução Remota de Comandos (RCE)
 Após upload de webshell foi possível executar comandos remotamente.
 
 Testes realizados:
-- whoami
-- Navegação em diretórios
-- Enumeração básica do sistema
 
-Impacto:
-Comprometimento do servidor.
+whoami
 
-[EVIDÊNCIA]
-(INSERIR PRINT AQUI)
-06-rce.png
+Navegação de diretórios
+
+Enumeração básica do sistema
+
+Confirmação de comprometimento do servidor.
+
+📸 Evidência
 
 
-[5] EXTRAÇÃO DE CREDENCIAIS
---------------------------------------------------------------------
-
+🔐 7️⃣ Extração de Credenciais
 Arquivo identificado:
+
 shadow_copy
-
 Impacto:
-- Exposição de hashes de senha
-- Risco de escalonamento de privilégios
-- Comprometimento completo do sistema
 
-[EVIDÊNCIA]
-(INSERIR PRINT AQUI)
-07-shadow.png
+Exposição de hashes de senha
+
+Risco de escalonamento de privilégios
+
+Comprometimento completo do sistema
+
+📸 Evidência
 
 
-====================================================================
-ANÁLISE FINAL
-====================================================================
+🚨 Análise Técnica Final
+A cadeia de exploração demonstrou:
 
-A exploração demonstrou que uma configuração inadequada do serviço
-WebDAV permitiu:
+WebDAV exposto sem controle adequado
 
-- Upload de arquivo malicioso
-- Execução remota de comandos
-- Exposição de credenciais sensíveis
+Permissão de upload de arquivo malicioso
 
-Laboratório executado exclusivamente em ambiente isolado para fins
-educacionais.
+Execução remota de comandos
+
+Exposição de credenciais sensíveis
+
+Possibilidade de escalonamento de privilégios
+
+⚠️ Observação Importante
+Este laboratório foi executado exclusivamente em:
+
+Ambiente virtualizado
+
+Rede isolada (Host-Only)
+
+Finalidade educacional
+
+Nenhum sistema real foi impactado.
+
