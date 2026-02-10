@@ -1,37 +1,41 @@
-# 📘 DOCUMENTAÇÃO TÉCNICA
+# 📘 DOCUMENTAÇÃO TÉCNICA  
 ## Credential Dump & WebShell Attack – Laboratório Controlado
 
 ---
 
 # 1️⃣ VISÃO GERAL
 
-Este documento descreve tecnicamente o processo de exploração realizado em ambiente de laboratório controlado, utilizando:
+Este documento descreve tecnicamente o processo de exploração realizado em ambiente de laboratório controlado.
 
-- **Máquina atacante:** Kali Linux  
-- **Máquina alvo:** Metasploitable 2  
-- **Ambiente:** VirtualBox  
-- **Rede:** Host-Only (isolada)
+## 🖥️ Ambiente Utilizado
 
-O objetivo foi demonstrar, de forma prática e documentada, a exploração de vulnerabilidades relacionadas a:
+- **Máquina Atacante:** Kali Linux  
+- **Máquina Alvo:** Metasploitable 2  
+- **Virtualização:** VirtualBox  
+- **Configuração de Rede:** Host-Only (ambiente isolado)
 
-- Serviço WebDAV mal configurado
-- Upload de WebShell
-- Execução Remota de Comandos (RCE)
-- Extração de credenciais
+## 🎯 Objetivo
+
+Demonstrar, de forma prática e documentada, a exploração de vulnerabilidades relacionadas a:
+
+- Serviço WebDAV mal configurado  
+- Upload de WebShell  
+- Execução Remota de Comandos (RCE)  
+- Extração de credenciais  
 
 ---
 
 # 2️⃣ ESCOPO DO TESTE
 
-### 🎯 Objetivo do laboratório
+## 📌 Escopo Autorizado
+
+- IP alvo: `192.168.56.124`  
+- Ambiente totalmente isolado  
+- Uso exclusivamente educacional  
+
+## 🎯 Objetivo do Laboratório
 
 Simular um cenário realista de ataque explorando falhas de configuração e serviços inseguros expostos.
-
-### 📌 Escopo autorizado
-
-- IP alvo: `192.168.56.124`
-- Ambiente totalmente isolado
-- Uso exclusivamente educacional
 
 ---
 
@@ -39,12 +43,12 @@ Simular um cenário realista de ataque explorando falhas de configuração e ser
 
 A abordagem seguiu as etapas clássicas de um processo de Pentest:
 
-1. Reconhecimento
-2. Enumeração
-3. Identificação de vulnerabilidades
-4. Exploração
-5. Pós-exploração
-6. Análise de impacto
+1. Reconhecimento  
+2. Enumeração  
+3. Identificação de vulnerabilidades  
+4. Exploração  
+5. Pós-exploração  
+6. Análise de impacto  
 
 ---
 
@@ -52,19 +56,24 @@ A abordagem seguiu as etapas clássicas de um processo de Pentest:
 
 ---
 
-## 4.1 Verificação de Conectividade
+## 4.1 🔎 Verificação de Conectividade
 
-Validação inicial da comunicação entre atacante e alvo.
+Validação da comunicação entre atacante e alvo.
+
+### 🛠️ Comando Executado
 
 ```bash
 ping 192.168.56.124
-Confirmação de conectividade ativa via ICMP.
+✅ Resultado
+Confirmação de conectividade ativa via ICMP, sem perda de pacotes.
 
-4.2 Enumeração de Serviços
-Ferramenta utilizada: Nmap
+4.2 🔍 Enumeração de Serviços
+🛠️ Ferramenta Utilizada
+Nmap
 
+🛠️ Comando Executado
 nmap -sS -sV -p- 192.168.56.124
-Serviços identificados:
+📊 Serviços Identificados
 FTP
 
 Telnet
@@ -77,39 +86,40 @@ HTTP (Apache 2.2.8)
 
 Indícios de WebDAV habilitado
 
+⚠️ Análise
 A presença de múltiplos serviços inseguros aumentou significativamente a superfície de ataque.
 
-4.3 Descoberta de Diretórios
-Ferramenta utilizada: Gobuster
+4.3 📂 Descoberta de Diretórios
+🛠️ Ferramenta Utilizada
+Gobuster
 
+🛠️ Comando Executado
 gobuster dir -u http://192.168.56.124 -w /usr/share/wordlists/dirb/common.txt
-Diretório identificado:
+📁 Diretório Identificado
 /dav
-O diretório apresentava permissões inadequadas.
+⚠️ Análise
+O diretório apresentava permissões inadequadas, possibilitando upload de arquivos maliciosos.
 
-4.4 Exploração – Upload de WebShell
+4.4 💻 Exploração – Upload de WebShell
 Foi realizado upload de WebShell no diretório /dav.
 
-Após o upload, foi validada a execução remota de comandos:
-
+🛠️ Teste de Execução Remota
 curl "http://192.168.56.124/dav/shell.php?cmd=whoami"
-Resultado:
+✅ Resultado
 www-data
-Confirmando execução remota com privilégios do serviço web.
+Confirmação de execução remota de comandos com privilégios do serviço web.
 
-4.5 Pós-Exploração – Extração de Credenciais
-Arquivo identificado:
-
+4.5 🔐 Pós-Exploração – Extração de Credenciais
+📁 Arquivo Identificado
 /home/msfadmin/shadow_copy
-Comando utilizado:
-
+🛠️ Comando Executado
 curl "http://192.168.56.124/dav/shell.php?cmd=cat%20/home/msfadmin/shadow_copy"
-Impacto:
+🚨 Impacto Identificado
 Exposição de hashes de senha
 
 Possível escalonamento de privilégios
 
-Comprometimento total do sistema
+Potencial comprometimento total do sistema
 
 5️⃣ ANÁLISE DE IMPACTO
 A vulnerabilidade explorada permitiu:
@@ -122,8 +132,7 @@ Leitura de arquivos sensíveis
 
 Exposição de credenciais
 
-Em ambiente corporativo real, esse cenário poderia resultar em:
-
+📉 Possíveis Impactos em Ambiente Corporativo
 Comprometimento completo do servidor
 
 Movimento lateral na rede
@@ -143,16 +152,16 @@ Aplicar controle de permissões adequado
 
 Atualizar serviços legados
 
-Monitoramento de logs
+Monitoramento contínuo de logs
 
 Implementação de WAF
 
-Princípio do menor privilégio
+Aplicação do princípio do menor privilégio
 
 7️⃣ CONCLUSÃO
-O laboratório demonstrou de forma prática como falhas de configuração e serviços inseguros podem resultar em comprometimento completo de um servidor.
+O laboratório demonstrou, de forma prática, como falhas de configuração e serviços inseguros podem resultar em comprometimento completo de um servidor.
 
-A atividade reforça a importância de:
+Reforça-se a importância de:
 
 Hardening de serviços
 
@@ -160,8 +169,7 @@ Gestão contínua de vulnerabilidades
 
 Monitoramento ativo
 
-Testes de segurança periódicos
+Testes periódicos de segurança
 
 ⚠️ AVISO LEGAL
 Este laboratório foi executado exclusivamente em ambiente isolado e controlado, com finalidade educacional.
-
