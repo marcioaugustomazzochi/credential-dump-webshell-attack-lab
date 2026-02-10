@@ -1,5 +1,4 @@
-# Credential Dump & Webshell Attack Lab
-![MIT License](https://img.shields.io/badge/license-MIT-green)
+# Credential Dump & Webshell Attack Lab [MIT License](https://img.shields.io/badge/license-MIT-green)
 
 ## 📌 Visão Geral
 
@@ -78,7 +77,7 @@ A exploração resultou em:
 - Possibilidade de escalonamento de privilégios
 - Risco de comprometimento total do host
 
-Severidade estimada: **CRITICAL**
+Severidade estimada: **CRITICA**
 
 ---
 
