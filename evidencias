@@ -1,124 +1,119 @@
-# 📂 EVIDÊNCIAS TÉCNICAS
+====================================================================
+📂 EVIDÊNCIAS TÉCNICAS
+Credential Dump & Webshell Attack Lab
+====================================================================
 
-> Relatório técnico contendo as evidências coletadas durante a execução do  
-> **Credential Dump & Webshell Attack Lab**
+[0] AMBIENTE DO ATACANTE – KALI LINUX
+--------------------------------------------------------------------
 
----
+Sistema: Kali Linux
+Virtualização: VirtualBox
+Rede: Host-Only (isolada)
 
-# 🖥️ 0️⃣ AMBIENTE DO ATACANTE
+Objetivo:
+Validar que o ambiente está configurado corretamente antes do início
+dos testes de exploração.
 
-**Sistema:** Kali Linux  
-**Virtualização:** VirtualBox  
-**Rede:** Host-Only (Ambiente Isolado)
+[EVIDÊNCIA]
+(INSERIR PRINT AQUI)
+00-kali-environment.png
 
-O ambiente foi configurado exclusivamente para fins educacionais, garantindo isolamento completo de redes externas.
 
-### 📸 Evidência
+[1] VERIFICAÇÃO DE CONECTIVIDADE
+--------------------------------------------------------------------
 
-![Ambiente Kali Linux](./00-kali-environment.png)
-
----
-
-# 📡 1️⃣ VERIFICAÇÃO DE CONECTIVIDADE
-
-Antes do início da exploração foi validada a comunicação entre atacante e alvo.
-
-### 🔧 Comando utilizado:
-
-```bash
+Comando utilizado:
 ping <IP_DO_ALVO>
-O retorno confirmou conectividade ativa na rede isolada.
 
-📸 Evidência
+Objetivo:
+Confirmar comunicação entre Kali Linux e Metasploitable 2.
 
+Resultado:
+Respostas ICMP recebidas, confirmando conectividade na rede isolada.
 
-🔎 2️⃣ ENUMERAÇÃO DE PORTAS (NMAP)
-Foi realizada varredura para identificação de:
-
-Portas abertas
-
-Serviços ativos
-
-Versões detectadas
-
-A análise identificou múltiplos serviços expostos, incluindo serviço HTTP com suporte a WebDAV habilitado.
-
-📸 Evidência
+[EVIDÊNCIA]
+(INSERIR PRINT AQUI)
+01-ping-test.png
 
 
-🌐 3️⃣ ENUMERAÇÃO WEB
-Foi realizada identificação de tecnologias web através de fingerprinting.
+[2] ENUMERAÇÃO DE PORTAS
+--------------------------------------------------------------------
 
-O processo revelou informações sobre o servidor web e possíveis configurações inseguras.
+Ferramenta: Nmap
 
-📸 Evidência
+Objetivo:
+Identificar portas abertas e serviços expostos.
+
+Resultado:
+- Múltiplas portas abertas
+- Serviço HTTP identificado
+- Indícios de WebDAV habilitado
+
+[EVIDÊNCIA]
+(INSERIR PRINT AQUI)
+02-nmap-scan.png
 
 
-📁 4️⃣ DESCOBERTA DE DIRETÓRIOS
-Foi realizada enumeração de diretórios utilizando técnica de brute force.
+[3] DESCOBERTA DE DIRETÓRIO
+--------------------------------------------------------------------
 
-📂 Diretório identificado:
+Ferramenta: Gobuster
+
+Diretório identificado:
 /dav
-O diretório apresentou permissões inadequadas.
 
-📸 Evidência
+Impacto:
+Diretório com permissões inadequadas permitindo exploração.
 
-
-📂 5️⃣ EXPLORAÇÃO WEBDAV
-Foi realizado acesso ao diretório /dav utilizando cliente WebDAV.
-
-Permissões confirmadas:
-✅ Leitura
-
-✅ Escrita
-
-✅ Upload de arquivos
-
-Essa configuração possibilitou envio de arquivo contendo código para execução remota.
-
-📸 Evidência
+[EVIDÊNCIA]
+(INSERIR PRINT AQUI)
+04-gobuster.png
 
 
-💻 6️⃣ EXECUÇÃO REMOTA DE COMANDOS (RCE)
-Após upload da webshell foi possível executar comandos remotamente no servidor.
+[4] EXECUÇÃO REMOTA DE COMANDOS
+--------------------------------------------------------------------
+
+Após upload de webshell foi possível executar comandos remotamente.
 
 Testes realizados:
-Identificação do usuário em execução
+- whoami
+- Navegação em diretórios
+- Enumeração básica do sistema
 
-Navegação no sistema de arquivos
+Impacto:
+Comprometimento do servidor.
 
-Enumeração do ambiente
-
-A exploração confirmou execução remota de comandos no contexto do serviço web.
-
-📸 Evidência
+[EVIDÊNCIA]
+(INSERIR PRINT AQUI)
+06-rce.png
 
 
-🔐 7️⃣ EXTRAÇÃO DE CREDENCIAIS
-Durante a enumeração interna foi identificado arquivo contendo hashes de senha armazenado de forma insegura.
+[5] EXTRAÇÃO DE CREDENCIAIS
+--------------------------------------------------------------------
 
-📄 Arquivo identificado:
+Arquivo identificado:
 shadow_copy
-A leitura confirmou exposição de credenciais sensíveis.
 
-📸 Evidência
+Impacto:
+- Exposição de hashes de senha
+- Risco de escalonamento de privilégios
+- Comprometimento completo do sistema
+
+[EVIDÊNCIA]
+(INSERIR PRINT AQUI)
+07-shadow.png
 
 
-🚨 ANÁLISE TÉCNICA
-A cadeia de exploração demonstrou:
+====================================================================
+ANÁLISE FINAL
+====================================================================
 
-Serviço WebDAV exposto
+A exploração demonstrou que uma configuração inadequada do serviço
+WebDAV permitiu:
 
-Upload de arquivo malicioso permitido
+- Upload de arquivo malicioso
+- Execução remota de comandos
+- Exposição de credenciais sensíveis
 
-Execução remota de comandos
-
-Exposição de hashes de senha
-
-Potencial escalonamento de privilégios
-
-⚠️ AVISO
-Laboratório executado exclusivamente em ambiente virtualizado
-Rede isolada (Host-Only)
-Fins educacionais
-Nenhum sistema real foi impactado.
+Laboratório executado exclusivamente em ambiente isolado para fins
+educacionais.
