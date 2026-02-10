@@ -14,7 +14,8 @@ Validar que o ambiente está corretamente configurado antes do início da explor
 
 ### **📸 Evidência**
 
-![Ambiente Kali Linux](./00-kali-environment.png)
+![Ambiente Kali Linux](./00-kali-environment.png)<img width="1280" height="800" alt="Kali print 2" src="https://github.com/user-attachments/assets/9a495d6c-3bd4-4bd4-bbd7-066a00bcf249" />
+
 
 ---
 
