@@ -9,6 +9,8 @@ Este laboratório demonstra a exploração de uma vulnerabilidade no serviço We
 
 O objetivo foi validar o ciclo completo de exploração em ambiente controlado.
 
+---
+
 # 📂 EVIDÊNCIAS TÉCNICAS  
 ## Credential Dump & Webshell Attack Lab
 
