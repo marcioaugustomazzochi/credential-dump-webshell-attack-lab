@@ -1,43 +1,43 @@
-# 📂 Evidências Técnicas  
-### Credential Dump & Webshell Attack Lab
+📂 Evidências Técnicas
 
-> Documento técnico contendo as evidências coletadas durante a execução do laboratório em ambiente isolado.
+Credential Dump & Webshell Attack Lab
 
----
+🖥️ 0️⃣ Ambiente do Atacante – Kali Linux
 
-## 🖥️ 1️⃣ Ambiente do Atacante – Kali Linux
+Sistema: Kali Linux
+Virtualização: VirtualBox
+Rede: Host-Only (isolada)
 
-**Sistema:** Kali Linux  
-**Virtualização:** VirtualBox  
-**Rede:** Host-Only (Isolada)
+Objetivo:
+Validar que o ambiente está corretamente configurado antes do início da exploração.
 
-> O ambiente foi validado antes do início da exploração para garantir configuração correta da rede e comunicação com o alvo.
+📸 Print da evidência:
+00-kali-environment.png
 
-### 📸 Evidência
+📡 1️⃣ Verificação de Conectividade
 
-![Ambiente Kali](./00-kali-environment.png)
+Comando utilizado:
 
----
-
-## 📡 2️⃣ Verificação de Conectividade (Ping)
-
-```bash
 ping <IP_DO_ALVO>
+
+
 Objetivo:
 Confirmar comunicação entre Kali Linux e Metasploitable 2.
 
 Resultado:
-Respostas ICMP recebidas com sucesso, validando conectividade na rede isolada.
+Respostas ICMP recebidas, confirmando conectividade ativa.
 
-📸 Evidência
+📸 Print da evidência:
+01-ping-test.png
 
+🔎 2️⃣ Enumeração de Portas
 
-🔎 3️⃣ Enumeração de Portas (Nmap)
-nmap -sV -sC <IP_DO_ALVO>
+Ferramenta: Nmap
+
 Objetivo:
-Identificar portas abertas, serviços ativos e versões em execução.
+Identificar portas abertas e serviços expostos.
 
-Principais achados:
+Resultado identificado:
 
 Múltiplas portas abertas
 
@@ -45,80 +45,68 @@ Serviço HTTP ativo
 
 Indícios de WebDAV habilitado
 
-📸 Evidência
+📸 Print da evidência:
+02-nmap-scan.png
 
+📁 3️⃣ Descoberta de Diretório
 
-🌐 4️⃣ Enumeração Web
-Ferramenta utilizada para fingerprint do servidor web.
+Ferramenta: Gobuster
 
-Objetivo:
-Identificar tecnologias e possíveis configurações inseguras.
-
-📸 Evidência
-
-
-📁 5️⃣ Descoberta de Diretórios
-gobuster dir -u http://<IP_DO_ALVO> -w wordlist.txt
 Diretório identificado:
 
 /dav
+
+
+Impacto:
 Diretório com permissões inadequadas permitindo exploração.
 
-📸 Evidência
+📸 Print da evidência:
+04-gobuster.png
 
+💻 4️⃣ Execução Remota de Comandos
 
-💻 6️⃣ Execução Remota de Comandos (RCE)
-Após upload de webshell foi possível executar comandos remotamente.
+Após o upload da webshell foi possível executar comandos remotamente no servidor.
 
 Testes realizados:
 
 whoami
 
-Navegação de diretórios
+Navegação em diretórios
 
 Enumeração básica do sistema
 
-Confirmação de comprometimento do servidor.
+Impacto:
+Comprometimento do servidor.
 
-📸 Evidência
+📸 Print da evidência:
+06-rce.png
 
+🔐 5️⃣ Extração de Credenciais
 
-🔐 7️⃣ Extração de Credenciais
 Arquivo identificado:
 
 shadow_copy
+
+
 Impacto:
 
 Exposição de hashes de senha
 
 Risco de escalonamento de privilégios
 
-Comprometimento completo do sistema
+Potencial comprometimento total do sistema
 
-📸 Evidência
+📸 Print da evidência:
+07-shadow.png
 
+🚨 Análise Final
 
-🚨 Análise Técnica Final
-A cadeia de exploração demonstrou:
+A exploração demonstrou que uma configuração inadequada do serviço WebDAV permitiu:
 
-WebDAV exposto sem controle adequado
-
-Permissão de upload de arquivo malicioso
+Upload de arquivo malicioso
 
 Execução remota de comandos
 
 Exposição de credenciais sensíveis
 
-Possibilidade de escalonamento de privilégios
-
-⚠️ Observação Importante
-Este laboratório foi executado exclusivamente em:
-
-Ambiente virtualizado
-
-Rede isolada (Host-Only)
-
-Finalidade educacional
-
-Nenhum sistema real foi impactado.
-
+🔒 Laboratório executado exclusivamente em ambiente isolado para fins educacionais.
