@@ -88,6 +88,6 @@ Severidade: **CRITICAL**
 
 ## 📌 Conclusão
 
-O laboratório monstrou como uma configuração inadequada de serviços web pode levar ao comprometimento completo do sistema, incluindo execução remota de comandos e exposição de credenciais sensíveis.
+O laboratório demostra como uma configuração inadequada de serviços web pode levar ao comprometimento completo do sistema, incluindo execução remota de comandos e exposição de credenciais sensíveis.
 
 Projeto realizado exclusivamente para fins educacionais em ambiente controlado.
