@@ -14,7 +14,7 @@ Validar que o ambiente está corretamente configurado antes do início da explor
 
 ### **📸 Evidência**
 
-![Ambiente Kali Linux](./00-kali-environment.png)<img width="1280" height="800" alt="Kali print 2" src="https://github.com/user-attachments/assets/9a495d6c-3bd4-4bd4-bbd7-066a00bcf249" />
+<img width="1280" height="800" alt="Kali print 2" src="https://github.com/user-attachments/assets/9a495d6c-3bd4-4bd4-bbd7-066a00bcf249" />
 
 
 ---
@@ -33,7 +33,7 @@ Respostas ICMP recebidas, confirmando conectividade ativa.
 
 ### **📸 Evidência**
 
-![Teste de Ping](./01-ping-test.png)<img width="1920" height="936" alt="01_ping_kali_to_metasploitable" src="https://github.com/user-attachments/assets/31c08772-b537-4572-b6ea-161edd1b44cf" />
+<img width="1920" height="936" alt="01_ping_kali_to_metasploitable" src="https://github.com/user-attachments/assets/31c08772-b537-4572-b6ea-161edd1b44cf" />
 
 
 ---
@@ -53,7 +53,7 @@ Identificar portas abertas e serviços expostos.
 
 ### **📸 Evidência**
 
-![Enumeração Nmap](./02-nmap-scan.png)<img width="1920" height="936" alt="03_nmap_initial_enumeration" src="https://github.com/user-attachments/assets/67e91537-0ff5-4bd4-bb5f-e88e30aabf61" />
+<img width="1920" height="936" alt="03_nmap_initial_enumeration" src="https://github.com/user-attachments/assets/67e91537-0ff5-4bd4-bb5f-e88e30aabf61" />
 
 
 ---
@@ -71,7 +71,7 @@ Diretório com permissões inadequadas permitindo exploração.
 
 ### **📸 Evidência**
 
-![Descoberta de Diretório](./04-gobuster.png)<img width="1920" height="936" alt="04_gobuster_directory_enum" src="https://github.com/user-attachments/assets/640db96b-8bac-435d-9adb-57afe973f2d6" />
+<img width="1920" height="936" alt="04_gobuster_directory_enum" src="https://github.com/user-attachments/assets/640db96b-8bac-435d-9adb-57afe973f2d6" />
 
 
 ---
@@ -92,7 +92,7 @@ Comprometimento do servidor.
 
 ### **📸 Evidência**
 
-![Execução Remota](./06-rce.png)<img width="1920" height="936" alt="5_webdav_anonymous_access_listing" src="https://github.com/user-attachments/assets/2eb52eab-7c65-4c8b-b99a-7e257bfd9992" />
+<img width="1920" height="936" alt="5_webdav_anonymous_access_listing" src="https://github.com/user-attachments/assets/2eb52eab-7c65-4c8b-b99a-7e257bfd9992" />
 
 
 ---
@@ -111,7 +111,7 @@ Comprometimento do servidor.
 
 ### **📸 Evidência**
 
-![Extração de Credenciais](./07-shadow.png)<img width="1920" height="936" alt="8_post_exploitation_hash_dump_shadow_copy" src="https://github.com/user-attachments/assets/9567581c-e617-4385-a572-a6f34aa2987e" />
+<img width="1920" height="936" alt="8_post_exploitation_hash_dump_shadow_copy" src="https://github.com/user-attachments/assets/9567581c-e617-4385-a572-a6f34aa2987e" />
 
 
 
