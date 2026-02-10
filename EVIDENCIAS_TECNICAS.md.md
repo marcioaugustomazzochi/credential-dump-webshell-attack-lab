@@ -33,7 +33,8 @@ Respostas ICMP recebidas, confirmando conectividade ativa.
 
 ### **📸 Evidência**
 
-![Teste de Ping](./01-ping-test.png)
+![Teste de Ping](./01-ping-test.png)<img width="1920" height="936" alt="01_ping_kali_to_metasploitable" src="https://github.com/user-attachments/assets/31c08772-b537-4572-b6ea-161edd1b44cf" />
+
 
 ---
 
@@ -52,7 +53,8 @@ Identificar portas abertas e serviços expostos.
 
 ### **📸 Evidência**
 
-![Enumeração Nmap](./02-nmap-scan.png)
+![Enumeração Nmap](./02-nmap-scan.png)<img width="1920" height="936" alt="03_nmap_initial_enumeration" src="https://github.com/user-attachments/assets/67e91537-0ff5-4bd4-bb5f-e88e30aabf61" />
+
 
 ---
 
@@ -69,7 +71,8 @@ Diretório com permissões inadequadas permitindo exploração.
 
 ### **📸 Evidência**
 
-![Descoberta de Diretório](./04-gobuster.png)
+![Descoberta de Diretório](./04-gobuster.png)<img width="1920" height="936" alt="04_gobuster_directory_enum" src="https://github.com/user-attachments/assets/640db96b-8bac-435d-9adb-57afe973f2d6" />
+
 
 ---
 
@@ -89,7 +92,8 @@ Comprometimento do servidor.
 
 ### **📸 Evidência**
 
-![Execução Remota](./06-rce.png)
+![Execução Remota](./06-rce.png)<img width="1920" height="936" alt="5_webdav_anonymous_access_listing" src="https://github.com/user-attachments/assets/2eb52eab-7c65-4c8b-b99a-7e257bfd9992" />
+
 
 ---
 
@@ -107,7 +111,9 @@ Comprometimento do servidor.
 
 ### **📸 Evidência**
 
-![Extração de Credenciais](./07-shadow.png)
+![Extração de Credenciais](./07-shadow.png)<img width="1920" height="936" alt="8_post_exploitation_hash_dump_shadow_copy" src="https://github.com/user-attachments/assets/9567581c-e617-4385-a572-a6f34aa2987e" />
+
+
 
 ---
 
