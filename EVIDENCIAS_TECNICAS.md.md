@@ -14,7 +14,7 @@ Validar que o ambiente está corretamente configurado antes do início da explor
 
 ### **📸 Evidência**
 
-<img width="1280" height="800" alt="00_kali_environment png" 
+<img width="1280" height="800" alt="00_kali_environment png" src="https://github.com/user-attachments/assets/a22293a9-c330-4dae-aa7b-5f254045b9b8" />
 
 ---
 
@@ -32,7 +32,7 @@ Respostas ICMP recebidas, confirmando conectividade ativa.
 
 ### **📸 Evidência**
 
-<img width="1920" height="936" alt="01_ping_kali_to_metasploitable png" 
+<img width="1920" height="936" alt="01_ping_kali_to_metasploitable png" src="https://github.com/user-attachments/assets/a040a094-f00e-4be2-b43f-feb7b794ecaf" />
 
 ---
 
@@ -51,7 +51,7 @@ Identificar portas abertas e serviços expostos.
 
 ### **📸 Evidência**
 
-<img width="1920" height="936" alt="02_nmap_initial_scan png" 
+<img width="1920" height="936" alt="02_nmap_initial_scan png" src="https://github.com/user-attachments/assets/1afa917d-06ef-4f6c-b4d5-4dfb99b4ad4d" />
 
 ---
 
@@ -68,7 +68,7 @@ Diretório com permissões inadequadas permitindo exploração.
 
 ### **📸 Evidência**
 
-<img width="1920" height="936" alt="03_gobuster_directory_enum png" 
+ <img width="1920" height="936" alt="03_gobuster_directory_enum png" src="https://github.com/user-attachments/assets/0b33dedb-f359-4c92-9c61-cdb0d0bb618e" />
 
 ---
 
@@ -88,7 +88,7 @@ Comprometimento do servidor.
 
 ### **📸 Evidência**
 
-<img width="1920" height="936" alt="04_webdav_access png" 
+<img width="1920" height="936" alt="04_webdav_access png" src="https://github.com/user-attachments/assets/cd73709e-dce3-45f6-bd34-ad6865b024e1" />
 
 ---
 
@@ -106,7 +106,7 @@ Comprometimento do servidor.
 
 ### **📸 Evidência**
 
-<img width="1920" height="936" alt="7_shadow_dump png" 
+<img width="1920" height="936" alt="7_shadow_dump png" src="https://github.com/user-attachments/assets/e5e934e0-bcde-431f-afee-e1f9ef645afe" />
 
 ---
 
