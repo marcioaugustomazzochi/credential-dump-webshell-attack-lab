@@ -1,14 +1,17 @@
-# 📂 Evidências Técnicas
+# 📂 EVIDÊNCIAS TÉCNICAS
 
-Este documento apresenta as evidências coletadas durante a execução do laboratório **Credential Dump & Webshell Attack Lab**.
+> Relatório técnico contendo as evidências coletadas durante a execução do  
+> **Credential Dump & Webshell Attack Lab**
 
 ---
 
-## 🖥️ 0️⃣ Ambiente do Atacante (Kali Linux)
+# 🖥️ 0️⃣ AMBIENTE DO ATACANTE
 
-A máquina atacante utilizada no laboratório foi o Kali Linux executando em ambiente virtualizado (VirtualBox) dentro de rede isolada Host-Only.
+**Sistema:** Kali Linux  
+**Virtualização:** VirtualBox  
+**Rede:** Host-Only (Ambiente Isolado)
 
-A imagem abaixo demonstra o ambiente configurado e pronto para início das atividades de teste.
+O ambiente foi configurado exclusivamente para fins educacionais, garantindo isolamento completo de redes externas.
 
 ### 📸 Evidência
 
@@ -16,132 +19,106 @@ A imagem abaixo demonstra o ambiente configurado e pronto para início das ativi
 
 ---
 
-## 📡 1️⃣ Verificação de Conectividade (Ping)
+# 📡 1️⃣ VERIFICAÇÃO DE CONECTIVIDADE
 
-Antes do início da exploração foi realizada validação da conectividade entre a máquina atacante (Kali Linux) e a máquina alvo (Metasploitable 2).
+Antes do início da exploração foi validada a comunicação entre atacante e alvo.
 
-O teste foi realizado utilizando o comando `ping`, confirmando comunicação ativa na rede isolada.
+### 🔧 Comando utilizado:
 
-Esse passo é essencial para garantir que ambas as máquinas estão na mesma rede e aptas para interação.
+```bash
+ping <IP_DO_ALVO>
+O retorno confirmou conectividade ativa na rede isolada.
 
-### 📸 Evidência
+📸 Evidência
 
-![Teste de Ping](./01-ping-test.png)
 
----
+🔎 2️⃣ ENUMERAÇÃO DE PORTAS (NMAP)
+Foi realizada varredura para identificação de:
 
-## 🔎 2️⃣ Enumeração de Portas (Nmap)
+Portas abertas
 
-Foi realizada varredura na máquina alvo utilizando Nmap para identificação de:
+Serviços ativos
 
-- Portas abertas
-- Serviços em execução
-- Versões detectadas
+Versões detectadas
 
 A análise identificou múltiplos serviços expostos, incluindo serviço HTTP com suporte a WebDAV habilitado.
 
-### 📸 Evidência
+📸 Evidência
 
-![Enumeração Nmap](./02-nmap-scan.png)
 
----
+🌐 3️⃣ ENUMERAÇÃO WEB
+Foi realizada identificação de tecnologias web através de fingerprinting.
 
-## 🌐 3️⃣ Enumeração Web
+O processo revelou informações sobre o servidor web e possíveis configurações inseguras.
 
-Foi realizada identificação das tecnologias web utilizando ferramenta de fingerprinting.
+📸 Evidência
 
-A análise revelou informações sobre o servidor web e possíveis configurações inseguras.
 
-### 📸 Evidência
+📁 4️⃣ DESCOBERTA DE DIRETÓRIOS
+Foi realizada enumeração de diretórios utilizando técnica de brute force.
 
-![Enumeração Web](./03-whatweb.png)
-
----
-
-## 📁 4️⃣ Descoberta de Diretórios
-
-Durante a enumeração foi utilizado brute force de diretórios para identificar caminhos sensíveis.
-
-Foi identificado o diretório:
-
+📂 Diretório identificado:
 /dav
-
-
 O diretório apresentou permissões inadequadas.
 
-### 📸 Evidência
+📸 Evidência
 
-![Descoberta de Diretório](./04-gobuster.png)
 
----
+📂 5️⃣ EXPLORAÇÃO WEBDAV
+Foi realizado acesso ao diretório /dav utilizando cliente WebDAV.
 
-## 📂 5️⃣ Exploração WebDAV
+Permissões confirmadas:
+✅ Leitura
 
-Foi realizado acesso ao diretório `/dav` utilizando cliente WebDAV.
+✅ Escrita
 
-Foi confirmada:
+✅ Upload de arquivos
 
-- Permissão de leitura
-- Permissão de escrita
-- Upload de arquivo permitido
+Essa configuração possibilitou envio de arquivo contendo código para execução remota.
 
-### 📸 Evidência
+📸 Evidência
 
-![Acesso WebDAV](./05-webdav-access.png)
 
----
+💻 6️⃣ EXECUÇÃO REMOTA DE COMANDOS (RCE)
+Após upload da webshell foi possível executar comandos remotamente no servidor.
 
-## 💻 6️⃣ Execução Remota de Comandos (RCE)
+Testes realizados:
+Identificação do usuário em execução
 
-Após o upload do arquivo malicioso (webshell), foi possível executar comandos remotamente no servidor.
+Navegação no sistema de arquivos
 
-Foram realizados testes como:
+Enumeração do ambiente
 
-- Identificação do usuário em execução
-- Navegação no sistema de arquivos
-- Enumeração básica do ambiente
+A exploração confirmou execução remota de comandos no contexto do serviço web.
 
-### 📸 Evidência
+📸 Evidência
 
-![Execução Remota](./06-rce.png)
 
----
-
-## 🔐 7️⃣ Extração de Credenciais
-
+🔐 7️⃣ EXTRAÇÃO DE CREDENCIAIS
 Durante a enumeração interna foi identificado arquivo contendo hashes de senha armazenado de forma insegura.
 
-Arquivo identificado:
-
+📄 Arquivo identificado:
 shadow_copy
+A leitura confirmou exposição de credenciais sensíveis.
+
+📸 Evidência
 
 
-A leitura do arquivo confirmou exposição de credenciais.
-
-### 📸 Evidência
-
-![Extração de Credenciais](./07-shadow.png)
-
----
-
-## 🚨 Análise Técnica
-
+🚨 ANÁLISE TÉCNICA
 A cadeia de exploração demonstrou:
 
-- Serviço WebDAV exposto
-- Permissão de upload de arquivo malicioso
-- Execução remota de comandos
-- Exposição de hashes de senha
-- Potencial escalonamento de privilégios
+Serviço WebDAV exposto
 
----
+Upload de arquivo malicioso permitido
 
-## ⚠️ Observação
+Execução remota de comandos
 
-Laboratório executado exclusivamente em:
+Exposição de hashes de senha
 
-- Ambiente virtualizado
-- Rede isolada (Host-Only)
-- Fins educacionais
+Potencial escalonamento de privilégios
 
+⚠️ AVISO
+Laboratório executado exclusivamente em ambiente virtualizado
+Rede isolada (Host-Only)
+Fins educacionais
 Nenhum sistema real foi impactado.
