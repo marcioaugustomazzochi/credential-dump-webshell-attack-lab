@@ -157,11 +157,3 @@ A exploração evidenciou falhas críticas na configuração do serviço WebDAV,
 
 🔒 **Laboratório executado exclusivamente em ambiente isolado para fins educacionais.**
 
----
-
-# 🛡️ LIÇÕES APRENDIDAS
-
-- Importância da correta configuração de serviços WebDAV
-- Necessidade de controle de acesso a diretórios sensíveis
-- Riscos de serviços desatualizados expostos à rede
-- Valor da segmentação e monitoramento contínuo
